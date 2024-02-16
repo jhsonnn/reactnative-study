@@ -4,14 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux';
-import counter from './reducers';
+import rootReducer from './reducers';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 //2. store에 reducer를 넣어줌
-const store = createStore(counter);
+const store = createStore(rootReducer);
+
+//13.
+store.dispatch({
+  type: "ADD_TODO",
+  // payload를 텍스트로 줬으므로
+  text: "USE_REDUX"
+})
+
+//14. store에 잘 들어갔는지, reducer가 잘 작동하는지 확인
+console.log('store.getState', store.getState())
+
 
 //8. 변화를 화면에 적용하도록 하기 위해 subscribe 사용=> subscribe에는 함수를 넣어줘야함
 //따라서 아래 부분을 함수로 바꾸기

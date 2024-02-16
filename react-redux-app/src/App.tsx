@@ -1,10 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 // 6. props 타입 정해주기(타입스크립트이므로)
 type Props = {
-  value: number;
+  value: any;
   onIncrement: () => void;
   onDecrement: () => void;
 }
@@ -14,7 +13,7 @@ type Props = {
 function App({value, onIncrement, onDecrement}: Props) {
   return (
     <div className="App">
-      Clicked: {value} times
+      {/* Clicked: {value} times */}
       <button onClick={onIncrement}>
         +
       </button>
