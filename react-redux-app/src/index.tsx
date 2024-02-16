@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {createStore} from 'redux';
 import rootReducer from './reducers';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -28,14 +29,19 @@ console.log('store.getState', store.getState())
 //따라서 아래 부분을 함수로 바꾸기
 const render = ()=> root.render(
   <React.StrictMode>
-    {/* 3. store에 getState를 이용해서 state를 내려줌 */}
-    <App
-      value={store.getState()}
-      // 4. getState를 이용해서 store안에 있는 state를 변경시켜줌
-      // action을 넣어서 dispatch해줌
-      onIncrement={()=>store.dispatch({type: "INCREMENT"})}
-      onDecrement={()=>store.dispatch({type: "DECREMENT"})}
-    />
+    {/* 15. Provider로 감싸줘서 store을 매번 컴포넌트로 내려주지 않도록*/}
+    {/* 16.Provider에는 store 속성이 있는데 만들어 둔 store를 넣어줌 */}
+    <Provider store={store}>
+      {/* 3. store에 getState를 이용해서 state를 내려줌 */}
+      <App
+        value={store.getState()}
+        // 4. getState를 이용해서 store안에 있는 state를 변경시켜줌
+        // action을 넣어서 dispatch해줌
+        onIncrement={()=>store.dispatch({type: "INCREMENT"})}
+        onDecrement={()=>store.dispatch({type: "DECREMENT"})}
+      />
+    </Provider>
+    
   </React.StrictMode>
 );
 
