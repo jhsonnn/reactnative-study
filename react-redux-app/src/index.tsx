@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 
@@ -11,8 +11,18 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const loggerMiddlware = (store: any)=>(next: any) => (action: any) =>{
+  console.log("store", store);
+  console.log("action", action);
+  // next: middleware 안에서 다음 걸로 넘겨줌
+  next(action);
+}
+
+const middleware: any = applyMiddleware(loggerMiddlware);
+
 //2. store에 reducer를 넣어줌
-const store = createStore(rootReducer);
+//store 생성할 때, middleware를 뒤에 같이 넣어줌
+const store = createStore(rootReducer, middleware);
 
 //13.
 // store.dispatch({
@@ -22,7 +32,6 @@ const store = createStore(rootReducer);
 // })
 //22. useDispatch()를 이용해서 action을 dispatch해주기
 //App.tsx에서 addTodo 안에서 해줌.(23.)
-
 
 
 //14. store에 잘 들어갔는지, reducer가 잘 작동하는지 확인

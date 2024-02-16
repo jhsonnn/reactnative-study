@@ -30,7 +30,7 @@ function App({value, onIncrement, onDecrement}: Props) {
   }
   const addTodo = (e: React.FormEvent<HTMLFormElement>)=> {
     e.preventDefault();
-    //23-2. Input 클릭 했을 때 addTodo에서 dispatch()
+    //23-2. Input 버튼 클릭 했을 때 addTodo에서 dispatch() 해서 내용 넣어주기
     dispatch({type:"ADD_TODO", text: todoValue })
     setTodoValue("");
   }
