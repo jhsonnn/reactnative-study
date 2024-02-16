@@ -25,3 +25,6 @@ const rootReducer = combineReducers({
 })
 
 export default rootReducer;
+
+// 18. App.tsx의 17. 에서 타입 오류 나는 문제를 rootReducer에서 state타입 지정함으로써 해결하기
+export type RootState = ReturnType<typeof rootReducer>;

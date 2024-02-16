@@ -15,14 +15,18 @@ const root = ReactDOM.createRoot(
 const store = createStore(rootReducer);
 
 //13.
-store.dispatch({
-  type: "ADD_TODO",
-  // payload를 텍스트로 줬으므로
-  text: "USE_REDUX"
-})
+// store.dispatch({
+//   type: "ADD_TODO",
+//   // payload를 텍스트로 줬으므로
+//   text: "USE_REDUX"
+// })
+//22. useDispatch()를 이용해서 action을 dispatch해주기
+//App.tsx에서 addTodo 안에서 해줌.(23.)
+
+
 
 //14. store에 잘 들어갔는지, reducer가 잘 작동하는지 확인
-console.log('store.getState', store.getState())
+//console.log('store.getState', store.getState())
 
 
 //8. 변화를 화면에 적용하도록 하기 위해 subscribe 사용=> subscribe에는 함수를 넣어줘야함
