@@ -2,6 +2,7 @@ import { StyleSheet, Text, SafeAreaView, View, Platform } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import InputForm from '../InputForm'
+import TodoItem from '../TodoItem'
 
 const MainScreen = () => {
   return (
@@ -10,6 +11,7 @@ const MainScreen = () => {
         <Text style={styles.pageTitle}>ToDo App</Text>
         <View style={styles.listView}>
             <Text style={styles.listTitle}>할 일</Text>
+            <TodoItem />
         </View>
         <View style={styles.separator} />
         <View style={styles.listView}>
