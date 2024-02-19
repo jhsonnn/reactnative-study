@@ -1,7 +1,20 @@
 import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addTodo } from './redux/slices/todoSlice';
 
 const InputForm = () => {
+    const [currentValue, setCurrentValue] = useState();
+    const dispatch = useDispatch();
+
+    const handleSubmit = ()=>{
+        //currentValue가 없지 않을 때(있을 때만)
+        if(currentValue !== ''){
+            dispatch(addTodo(currentValue));
+            setCurrentValue('');
+        }
+    }
+
   return (
     <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -9,8 +22,13 @@ const InputForm = () => {
             <TextInput 
                 style={styles.inputField}
                 placeholder="할 일을 작성해주세요."
+                value={currentValue}
+                onChangeText={setCurrentValue}
+                //버튼 클릭 이외에 엔터키로 submit 했을 때
+                //onSubmitEditing이 트리거 되어서 handleSubmit 함수 호출할 수 있도록함
+                onSubmitEditing={handleSubmit}
             />
-            <Pressable style={styles.addButton}>
+            <Pressable style={styles.addButton} onPress={handleSubmit}>
                 <Text style={styles.addButtonText}>+</Text>
             </Pressable>
     </KeyboardAvoidingView>
