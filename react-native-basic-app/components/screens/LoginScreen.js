@@ -1,7 +1,8 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import ListIcon from '../../assets/list.svg'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import Toast from 'react-native-toast-message';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
@@ -12,8 +13,19 @@ const LoginScreen = () => {
     try{
       const user = await createUserWithEmailAndPassword(auth, email, password);
       console.log('user', user);
+      Toast.show({
+        type: 'success',
+        text1: '회원가입 성공',
+        text2: `${email}으로 가입되었습니다.`
+      })
     }catch(error){
       console.log(error.message);
+      Alert.alert(
+        "회원가입 도중에 문제가 발생했습니다.",
+        error.message,
+        [{text: '닫기', onPress: () => console.log('닫기')}],
+        {cancelable: true}
+      )
     }
   }
 
@@ -80,7 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 5
   },
-  buttonContainer: {
+  buttonContainer:{
     width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -93,24 +105,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center'
   },
-  buttonOutline: {
+  buttonOutline:{
     backgroundColor: 'white',
     marginTop: 5,
     borderColor: 'black',
     borderWidth: 1,
   },
-  buttonText: {
+  buttonText:{
     color: 'white',
     fontWeight: '500',
     fontSize: 16,
   },
-  buttonOutlineText: {
+  buttonOutlineText:{
     color: 'black',
     fontWeight: 500,
     fontSize: 16
   }
-
-
-
-
 })
