@@ -3,8 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   items: [],
 };
-
-createSlice({
+export const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {},
