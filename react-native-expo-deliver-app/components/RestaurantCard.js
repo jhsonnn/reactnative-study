@@ -1,7 +1,7 @@
 import React from "react";
 
 const RestaurantCard = () => {
-  return <div></div>;
+  return <Text>RestaurantCard</Text>;
 };
 
 export default RestaurantCard;
