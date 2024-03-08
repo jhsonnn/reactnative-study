@@ -1,6 +1,13 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useEffect, useLayoutEffect } from "react";
-import { ScrollView, StatusBar, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import {
   ArrowLeftIcon,
   ChevronRightIcon,
@@ -9,7 +16,10 @@ import {
   StarIcon,
 } from "react-native-heroicons/outline";
 import { useDispatch } from "react-redux";
+import BasketIcon from "../components/BasketIcon";
+import DishRow from "../components/DishRow";
 import { urlFor } from "../sanity";
+import { setRestaurant } from "../store/restaurantSlice";
 
 const RestaurantScreen = () => {
   const {
