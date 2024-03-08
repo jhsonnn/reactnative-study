@@ -36,6 +36,7 @@ export default defineType({
       name: 'address',
       title: 'Restaurant address',
       type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'rating',

@@ -8,8 +8,13 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { MagnifyingGlassIcon, UserIcon } from "react-native-heroicons/outline";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+  UserIcon,
+} from "react-native-heroicons/outline";
 import { getFeaturedRestaurants } from "../api";
+import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 
 const HomeScreen = () => {
@@ -43,14 +48,13 @@ const HomeScreen = () => {
         <View className='flex-1'>
           <Text className='text-xs font=bolde text-gray-400'>배송 앱</Text>
           <Text className='text-xl font-bold'>
-            현재위치 //
-            {/* <ChevronDownIcon size={20} color='#00CCBB' /> */}
+            현재위치
+            <ChevronDownIcon size={20} color='#00CCBB' />
           </Text>
         </View>
 
         <UserIcon size={35} color='#00CCBB' />
       </View>
-
       {/* search */}
       <View className='flex-row items-center pb-2 mx-4 space-x-2'>
         <View className='flex-row flex-1 p-3 space-x-2 bg-gray-200 rounded-lg'>
@@ -64,8 +68,8 @@ const HomeScreen = () => {
         className='bg-gray-100'
         contentContainerStyle={{ paddingBottom: 100 }}
       >
-        {/* <Categories /> */}
-
+        <Categories />
+        {/* {console.log(featuredCategories)} */}
         {featuredCategories?.map((category) => (
           <FeaturedRow
             key={category._id}
