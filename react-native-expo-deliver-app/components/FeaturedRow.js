@@ -10,7 +10,7 @@ export default function FeaturedRow({ id, title, description }) {
   useEffect(() => {
     getFeaturedRestaurantsById(id)
       .then((data) => {
-        console.log("got data: ", data);
+        //console.log("got data: ", data);
         setRestaurants(data?.restaurants);
       })
       .catch((error) => {

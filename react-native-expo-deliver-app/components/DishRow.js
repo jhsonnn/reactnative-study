@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
+import {
+  MinusCircleIcon,
+  PlusCircleIcon,
+} from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
+import { urlFor } from "../sanity";
 import {
   addToBasket,
   clearBasket,
@@ -26,7 +31,81 @@ const DishRow = ({ id, name, description, price, image }) => {
     dispatch(clearBasket());
   };
 
-  return <Text>DishRow</Text>;
+  return (
+    <>
+      <View
+        className={`bg-white border p-4 border-gray-200
+      ${isPressed && "border-b-0"}`}
+      >
+        <View className='flex-row'>
+          <View className='flex-1 pr-2'>
+            <Text className='mb-1 text-lg font-semibold'>{name}</Text>
+            <Text className='text-gray-400'>{description}</Text>
+            <Text className='mt-2 text-gray-400'>${price}</Text>
+
+            <TouchableOpacity
+              onPress={() => {
+                addItemToBasket();
+                setIsPressed(true);
+              }}
+              className='rounded-lg mt-2 bg-[#00CCBB]'
+            >
+              <Text className='px-4 py-3 font-bold text-center text-white'>
+                장바구니에 추가하기
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                clearItemsFromBasket();
+                setIsPressed(false);
+              }}
+              className={`rounded-lg mt-2 border
+          ${items.length > 0 ? "border-[#00CCBB]" : "border-gray-200"}
+          `}
+            >
+              <Text
+                className={`px-4 py-3 font-bold text-center
+            ${items.length > 0 ? "text-[#00CCBB]" : "text-gray-200"}
+            `}
+              >
+                장바구니에서 모든 아이템 삭제하기
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Image
+              source={{ uri: urlFor(image).url() }}
+              className='object-cover w-20 h-20 bg-gray-300'
+              style={{ borderWidth: 1, borderColor: "#F3F3F4" }}
+            />
+          </View>
+        </View>
+      </View>
+
+      {isPressed && (
+        <View className='px-4 bg-white'>
+          <View className='flex-row items-center pb-3 space-x-2'>
+            <TouchableOpacity
+              onPress={removeItemFromBasket}
+              disabled={!items.length}
+            >
+              <MinusCircleIcon
+                size={40}
+                color={items.length > 0 ? "#00CCBB" : "gray"}
+              />
+            </TouchableOpacity>
+
+            <Text className='text-lg font-semibold'>{items.length}</Text>
+
+            <TouchableOpacity onPress={addItemToBasket}>
+              <PlusCircleIcon size={40} color={"#00CCBB"} />
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </>
+  );
 };
 
 export default DishRow;
