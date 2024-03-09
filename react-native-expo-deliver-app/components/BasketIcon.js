@@ -2,12 +2,12 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useSelector } from "react-redux";
-import { selectBasektTotal, selectBasketItems } from "../store/basketSlice";
+import { selectBasketItems, selectBasketTotal } from "../store/basketSlice";
 
 const BasketIcon = () => {
   const items = useSelector(selectBasketItems);
   const navigation = useNavigation();
-  const basketTotal = useSelector(selectBasektTotal);
+  const basketTotal = useSelector(selectBasketTotal);
 
   if (items.length === 0) return null;
 
