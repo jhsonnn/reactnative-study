@@ -1,7 +1,8 @@
 import React from "react";
+import { Text } from "react-native";
 
 const DeliveryScreen = () => {
-  return <div></div>;
+  return <Text>DeliveryScreen</Text>;
 };
 
 export default DeliveryScreen;
