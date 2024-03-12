@@ -34,7 +34,7 @@ const searchData = [
   },
 ];
 
-const SearchContent = () => {
+const SearchContent = ({getData}) => {
   return (
     <View>
       {searchData.map((data, index) => {
@@ -52,6 +52,8 @@ const SearchContent = () => {
                   return (
                     <TouchableOpacity
                       key={imageIndex}
+                      onPressIn={() => getData(imageData)}
+                      onPressOut={() => getData(null)}
                       style={{
                         paddingBottom: 2,
                         width: '33%',
@@ -85,6 +87,8 @@ const SearchContent = () => {
                     return (
                       <TouchableOpacity
                         key={imgIndex}
+                        onPressIn={() => getData(imageData)}
+                        onPressOut={() => getData(null)}
                         style={{paddingBottom: 2, width: '49.5%'}}>
                         <Image
                           source={imageData}
@@ -94,7 +98,10 @@ const SearchContent = () => {
                     );
                   })}
                 </View>
-                <TouchableOpacity style={{marginLeft: 2, width: '33%'}}>
+                <TouchableOpacity
+                  style={{marginLeft: 2, width: '33%'}}
+                  onPressIn={() => getData(data.images[4])}
+                  onPressOut={() => getData(null)}>
                   <Image
                     source={data.images[4]}
                     style={{width: '100%', height: 300}}
@@ -108,7 +115,10 @@ const SearchContent = () => {
                   flexDirection: 'row',
                   justifyContent: 'space-between',
                 }}>
-                <TouchableOpacity style={{paddingRight: 2, width: '66.5%'}}>
+                <TouchableOpacity
+                  style={{paddingRight: 2, width: '66.5%'}}
+                  onPressIn={() => getData(data.images[2])}
+                  onPressOut={() => getData(null)}>
                   <Image
                     source={data.images[2]}
                     style={{width: '100%', height: 300}}
@@ -125,6 +135,8 @@ const SearchContent = () => {
                     return (
                       <TouchableOpacity
                         key={imgIndex}
+                        onPressIn={() => getData(imageData)}
+                        onPressOut={() => getData(null)}
                         style={{
                           paddingBottom: 2,
                           width: '100%',
