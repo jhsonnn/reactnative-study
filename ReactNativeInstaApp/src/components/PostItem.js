@@ -30,6 +30,9 @@ const PostItem = ({data}) => {
         </View>
         <Feather name="more-vertical" style={{fontSize: 20}} />
       </View>
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+        <Image source={data.postImage} style={{width: '100%', height: 400}} />
+      </View>
     </View>
   );
 };
