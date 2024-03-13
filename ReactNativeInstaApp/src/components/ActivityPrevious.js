@@ -56,16 +56,7 @@ const ActivityPrevious = ({data}) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() =>
-            navigation.push('FriendProfile', {
-              name: data.name,
-              profileImage: data.profileImage,
-              follow: data.follow,
-              post: data.posts,
-              followers: data.followers,
-              following: data.following,
-            })
-          }
+          onPress={() => setFollow(prev => !prev)}
           style={{width: follow ? 72 : 68}}>
           <View
             style={{
