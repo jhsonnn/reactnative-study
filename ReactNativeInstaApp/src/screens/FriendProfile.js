@@ -3,6 +3,7 @@ import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionic from 'react-native-vector-icons/Ionicons';
 import ProfileBody from '../components/ProfileBody';
+import ProfileButton from '../components/ProfileButton';
 
 const FriendProfile = ({route, navigation}) => {
   const {name, profileImage, post, followers, following} = route.params;
@@ -48,6 +49,7 @@ const FriendProfile = ({route, navigation}) => {
           followers={followers}
           following={following}
         />
+        <ProfileButton id={1} />
       </View>
     </SafeAreaView>
   );
