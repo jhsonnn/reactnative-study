@@ -1,7 +1,15 @@
 import React from 'react';
-import {SafeAreaView, Text, TouchableOpacity, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionic from 'react-native-vector-icons/Ionicons';
+import {FriendsProfileData} from '../components/Database';
+import FreindItem from '../components/FreindItem';
 import ProfileBody from '../components/ProfileBody';
 import ProfileButton from '../components/ProfileButton';
 
@@ -50,6 +58,26 @@ const FriendProfile = ({route, navigation}) => {
           following={following}
         />
         <ProfileButton id={1} />
+
+        <Text
+          style={{
+            paddingVertical: 10,
+            fontSize: 15,
+            fontWeight: 'bold',
+          }}>
+          회원님을 위한 추천
+        </Text>
+
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{paddingTop: 10}}>
+          {name === FriendsProfileData.name
+            ? null
+            : FriendsProfileData.map((data, index) => (
+                <FreindItem key={index} data={data} name={name} />
+              ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
